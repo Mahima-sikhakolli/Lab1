@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Creative Calculator</title>
+  <style>
+    body {
+      background: #f0f4f8;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .calculator {
+      background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      width: 380px;
+    }
+
+    h1 {
+      color: #ffffff;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+
+    #result {
+      width: 100%;
+      height: 50px;
+      margin-bottom: 20px;
+      font-size: 22px;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.3);
+      color: #ffffff;
+      text-align: right;
+      outline: none;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr); /* Updated to 5 columns */
+      gap: 15px;
+    }
+
+    .buttons button {
+      height: 50px;
+      font-size: 20px;
+      border: none;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.3);
+      color: #333333;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .buttons button:hover {
+      background: rgba(255, 255, 255, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .equal {
+      background: #00b894;
+      color: #ffffff;
+    }
+
+    .equal:hover {
+      background: #019875;
+    }
+
+    .clear {
+      background: #d63031;
+      color: #ffffff;
+    }
+
+    .clear:hover {
+      background: #c0392b;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <h1>Calculator</h1>
+    <input type="text" id="result" readonly />
+    <div class="buttons">
+      <!-- Row 1 -->
+      <button onclick="appendValue('7')">7</button>
+      <button onclick="appendValue('8')">8</button>
+      <button onclick="appendValue('9')">9</button>
+      <button onclick="appendValue('/')">÷</button>
+      <button onclick="appendValue('%')">%</button>
+
+      <!-- Row 2 -->
+      <button onclick="appendValue('4')">4</button>
+      <button onclick="appendValue('5')">5</button>
+      <button onclick="appendValue('6')">6</button>
+      <button onclick="appendValue('*')">×</button>
+      <button onclick="appendValue('(')">(</button>
+
+      <!-- Row 3 -->
+      <button onclick="appendValue('1')">1</button>
+      <button onclick="appendValue('2')">2</button>
+      <button onclick="appendValue('3')">3</button>
+      <button onclick="appendValue('-')">−</button>
+      <button onclick="appendValue(')')">)</button>
+
+      <!-- Row 4 -->
+      <button onclick="appendValue('0')">0</button>
+      <button onclick="appendValue('+')">+</button>
+      <button onclick="appendValue('Math.sqrt(')">√</button>
+      <button class="equal" onclick="calculate()">=</button>
+      <button class="clear" onclick="clearResult()">C</button>
+    </div>
+  </div>
+
+  <script>
+    function appendValue(value) {
+      document.getElementById('result').value += value;
+    }
+
+    function clearResult() {
+      document.getElementById('result').value = '';
+    }
+
+    function calculate() {
+      try {
+        document.getElementById('result').value = eval(document.getElementById('result').value);
+      } catch {
+        document.getElementById('result').value = 'Error';
+      }
+    }
+  </script>
+</body>
+</html>
